@@ -2,7 +2,7 @@
 
 ## Installation
 \`\`\`bash
-git clone https://github.com/team/beatscorer.git
+git clone https://github.com/HocineDoukali/API-DIGIMON/blob/main/README.md
 cd beatscorer
 go mod download
 go run main.go
