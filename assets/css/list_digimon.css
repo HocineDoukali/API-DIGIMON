@@ -1,0 +1,22 @@
+.main-content{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.pokemons-list{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+}
+
+.pokemons-item{
+    width: 30%;
+    height: auto;
+}
+
+.pokemons-item>img{
+    width: 60%;
+    height: 50%;
+}
+

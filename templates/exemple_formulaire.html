@@ -1,0 +1,62 @@
+{{define "exemple_formulaire"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemple page formulaire</title>
+</head>
+
+<body>
+    <h1>Exemple formulaire</h1>
+    <form action="" method="get">
+        <label for="text">Exemple type texte</label>
+        <input id="text" type="text" name="query">
+
+        <label for="select">Exemple select</label>
+        <select id="select" name="select">
+            <optgroup label="letter">
+                <option value="a">a</option>
+                <option value="b">b</option>
+                <option value="c">c</option>
+            </optgroup>
+            <optgroup label="number">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </optgroup>
+        </select>
+
+        <h2>Exemple checkbox (un choix)</h2>
+        <div>
+            <input type="checkbox" id="check01" name="check" value="check" />
+            <label for="check01">check</label>
+        </div>
+
+        <h2>Exemple checkbox (plusieurs choix)</h2>
+        <div>
+            <input type="checkbox" id="check01" name="check_multip" value="check01" />
+            <label for="check01">check 01</label>
+        </div>
+        <div>
+            <input type="checkbox" id="check" name="check_multip" value="check02" />
+            <label for="check">check 02</label>
+        </div>
+
+        <h2>Exemple radio</h2>
+        <div>
+            <input type="radio" id="radio01" name="radio" value="radio01" />
+            <label for="radio01">radio 01</label>
+        </div>
+        <div>
+            <input type="radio" id="radio02" name="radio" value="radio02" />
+            <label for="radio02">radio 02</label>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>
+{{end}}

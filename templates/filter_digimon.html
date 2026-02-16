@@ -1,0 +1,160 @@
+{{define "filter_digimons"}}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtrer les Digimons</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/digimons">🏠 Accueil</a>
+            <a href="/digimons/search">🔍 Recherche</a>
+            <a href="/digimons/filter">🎯 Filtres</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>🎯 Filtrer les Digimons</h1>
+
+        <form action="/digimons/filter" method="post">
+            
+            <!-- Section Niveaux -->
+            <div class="filter-section">
+                <h2>📊 Niveau d'évolution :</h2>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="radio" name="level" id="fresh" value="Fresh">
+                        <label for="fresh">Fresh (Bébé I)</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" name="level" id="in-training" value="In-Training">
+                        <label for="in-training">In-Training (Bébé II)</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" name="level" id="rookie" value="Rookie">
+                        <label for="rookie">Rookie (Enfant)</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" name="level" id="champion" value="Champion">
+                        <label for="champion">Champion (Adulte)</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" name="level" id="ultimate" value="Ultimate">
+                        <label for="ultimate">Ultimate (Parfait)</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" name="level" id="mega" value="Mega">
+                        <label for="mega">Mega (Ultime)</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" name="level" id="ultra" value="Ultra">
+                        <label for="ultra">Ultra</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" name="level" id="armor" value="Armor">
+                        <label for="armor">Armor (Armure)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Attributs -->
+            <div class="filter-section">
+                <h2>⚔️ Attribut :</h2>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="radio" name="attribute" id="vaccine" value="Vaccine">
+                        <label for="vaccine">💉 Vaccine</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" name="attribute" id="data" value="Data">
+                        <label for="data">💾 Data</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" name="attribute" id="virus" value="Virus">
+                        <label for="virus">🦠 Virus</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" name="attribute" id="free" value="Free">
+                        <label for="free">🆓 Free</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" name="attribute" id="unknown" value="Unknown">
+                        <label for="unknown">❓ Unknown</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section X-Antibody -->
+            <div class="filter-section">
+                <h2>🧬 X-Antibody :</h2>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="checkbox" name="xantibody" id="xantibody" value="true">
+                        <label for="xantibody">Possède X-Antibody</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Boutons d'action -->
+            <div class="filter-actions">
+                <button type="submit" class="btn-primary">🔍 Filtrer</button>
+                <button type="reset" class="btn-secondary">🔄 Réinitialiser</button>
+                <a href="/digimons" class="btn-link">❌ Annuler</a>
+            </div>
+        </form>
+
+        <!-- Résultats -->
+        {{if .Digimons}}
+        <div class="results-header">
+            <h2>📋 Résultats du filtrage</h2>
+            {{if .Total}}
+            <p class="results-count">{{.Total}} Digimon(s) trouvé(s)</p>
+            {{end}}
+            {{if .Level}}
+            <span class="filter-tag">Niveau: {{.Level}}</span>
+            {{end}}
+            {{if .Attribute}}
+            <span class="filter-tag">Attribut: {{.Attribute}}</span>
+            {{end}}
+            {{if .XAntibody}}
+            <span class="filter-tag">X-Antibody ✓</span>
+            {{end}}
+        </div>
+
+        <div class="digimons-list">
+            {{range .Digimons}}
+            <div class="digimon-item">
+                <a href="/digimon/details?id={{.ID}}">
+                    <div class="digimon-card">
+                        <div class="digimon-image">
+                            <img src="{{.Image}}" alt="{{.Name}}" loading="lazy">
+                        </div>
+                        <div class="digimon-info">
+                            <h3 class="digimon-name">{{.Name}}</h3>
+                            <p class="digimon-id">ID: {{.ID}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {{end}}
+        </div>
+        {{else}}
+        <div class="no-results">
+            <p>🔍 Aucun Digimon ne correspond à vos critères de recherche.</p>
+            <p>Essayez de modifier vos filtres.</p>
+        </div>
+        {{end}}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Digimon Guide - Données fournies par <a href="https://digi-api.com" target="_blank">Digi-API</a></p>
+    </footer>
+</body>
+
+</html>
+{{end}}

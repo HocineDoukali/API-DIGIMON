@@ -1,0 +1,38 @@
+{{define "list_digimon"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemple - list digimon</title>
+    <link rel="stylesheet" href="static/css/list_digimon.css">
+</head>
+
+<body>
+    <div class="main-content">
+        <form action="/digimon/search" method="get">
+            <input type="text" name="query" placeholder="feu...">
+            <button type="submit">recherche</button>
+        </form>
+        <h1>Liste des digimon</h1>
+        <div class="digimon-list">
+            {{range .}}
+            <div class="digimon-item">
+                <h3>{{.Name}} | {{.Id}}</h3>
+                <img src="{{.Image}}" alt="images....">
+                <ul>
+                    {{range .Types}}
+                    <li>{{.Name}}</li>
+                    {{end}}
+                </ul>
+            </div>
+            {{else}}
+            <p>pas d'items...</p>
+            {{end}}
+        </div>
+    </div>
+</body>
+
+</html>
+{{end}}
